@@ -1,0 +1,149 @@
+<div class="container mx-auto p-4 max-w-4xl min-h-screen">
+  <!-- Loading State -->
+  @if (loading()) {
+  <div class="flex justify-center items-center py-20">
+    <div class="text-center">
+      <p-progressSpinner class="w-12 h-12 mx-auto"></p-progressSpinner>
+      <p class="mt-4">Loading user details...</p>
+    </div>
+  </div>
+  }
+
+  <!-- Error State -->
+  @if (error() && !loading()) {
+  <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+    <div class="text-red-500 text-6xl mb-4">⚠️</div>
+    <h2 class="text-xl font-semibold mb-2">Error Loading User</h2>
+    <p class="text-gray-600 mb-6">{{ error() }}</p>
+    <div class="flex gap-3 justify-center">
+      <button
+        pButton
+        icon="pi pi-arrow-left"
+        label="Back to Users"
+        class="p-button-outlined"
+        (click)="goBack()"
+      ></button>
+      <!-- <button pButton icon="pi pi-refresh" label="Try Again" class="p-button-primary" (click)="loadUser()"></button> -->
+    </div>
+  </div>
+  }
+
+  <!-- User Details -->
+  @if (user() && !loading()) {
+  <div class="space-y-6">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <button
+          pButton
+          icon="pi pi-arrow-left"
+          class="p-button-text p-button-secondary mb-4"
+          (click)="goBack()"
+        >
+          Back to Users
+        </button>
+        <h1 class="text-2xl md:text-3xl font-bold">User Details</h1>
+        <p class="">Complete information about the user</p>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Profile Card -->
+      <div class="lg:col-span-1">
+        <p-card class="h-full">
+          <div class="text-center">
+            <h2 class="text-xl font-bold mt-4">{{ user()?.firstName }} {{ user()?.lastName }}</h2>
+            <p class="">{{ user()?.email }}</p>
+
+           
+
+            <div class="mt-6 space-y-2 text-sm">
+              <div class="flex items-center justify-center gap-2">
+                <i class="pi pi-id-card"></i>
+                <span>ID: {{ user()?.id }}</span>
+              </div>
+              
+            </div>
+          </div>
+        </p-card>
+      </div>
+
+      <!-- Details Card -->
+      <div class="lg:col-span-2">
+        <p-card header="Personal Information">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Basic Info -->
+            <div class="space-y-4">
+              <h3 class="text-lg font-semibold border-b pb-2">Basic Information</h3>
+
+              <div>
+                <label class="block text-sm font-medium">First Name</label>
+                <p class="font-medium">{{ user()?.firstName }}</p>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium">Last Name</label>
+                <p class="font-medium">{{ user()?.lastName }}</p>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium">Email Address</label>
+                <p class="font-medium">{{ user()?.email }}</p>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium">User ID</label>
+                <p class="font-medium">{{ user()?.id }}</p>
+              </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="space-y-4">
+              <h3 class="text-lg font-semibold border-b pb-2">Additional Information</h3>
+
+              <div>
+                <label class="block text-sm font-medium">Phone Number</label>
+                <p class="font-medium">
+                  {{ user()?.phone || 'Not provided' }}
+                </p>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium">Age</label>
+                <p class="font-medium">
+                  {{ user()?.age || 'Not provided' }}
+                </p>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium">Gender</label>
+                <p class="font-medium">
+                  {{ getGenderLabel(user()?.gender) }}
+                </p>
+              </div>
+
+              <div>
+               
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex gap-3 justify-end pt-6 mt-6 border-t border-gray-200">
+            <button
+              pButton
+              icon="pi pi-pencil"
+              label="Edit User"
+              class="p-button-warning"
+              (click)="onEdit()"
+            ></button>
+          </div>
+        </p-card>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+
+<p-toast position="top-right"></p-toast>

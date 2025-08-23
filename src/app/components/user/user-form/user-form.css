@@ -1,0 +1,65 @@
+:host {
+  display: block;
+  min-height: calc(100vh - 100px);
+  background-color: #f8fafc;
+}
+
+.container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Form styling */
+form {
+  max-width: 100%;
+}
+
+/* Input field styling */
+.p-inputtext, .p-inputnumber, .p-dropdown {
+  width: 100%;
+}
+
+/* Card styling */
+::ng-deep .p-card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+::ng-deep .p-card .p-card-body {
+  padding: 2rem;
+}
+
+::ng-deep .p-card .p-card-content {
+  padding: 0;
+}
+
+/* Error styling */
+.p-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  ::ng-deep .p-card .p-card-body {
+    padding: 1.5rem;
+  }
+  
+  .grid {
+    gap: 1rem;
+  }
+}
+
+/* Loading state */
+.p-progress-spinner {
+  display: inline-block;
+}
+
+/* Button spacing */
+button[pButton] {
+  min-width: 120px;
+}

@@ -18,6 +18,7 @@ import { MessageService } from 'primeng/api';
 import { UserService } from '../../../services/user.service';
 import { UserStore } from '../../../store/user.store';
 import { User } from '../../../models/user';
+import { LoggerService } from '../../../services/logger.service';
 
 @Component({
   selector: 'user-list',
@@ -41,6 +42,7 @@ import { User } from '../../../models/user';
 })
 export class UserListComponent implements OnInit {
   private readonly userService = inject(UserService);
+  private readonly logger = inject(LoggerService);
   private readonly userStore = inject(UserStore);
   private readonly messageService = inject(MessageService);
 
@@ -65,6 +67,7 @@ export class UserListComponent implements OnInit {
     
     this.userService.getUsers(this.currentPage(), this.itemsPerPage()).subscribe({
       next: (response) => {
+        this.logger.info('users received:', response.users);
         this.userStore.setUsers(response.users);
         this.totalRecords.set(response.total);
         this.totalPages.set(Math.ceil(response.total/response.limit));

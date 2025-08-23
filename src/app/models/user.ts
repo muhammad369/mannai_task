@@ -1,12 +1,12 @@
 
 export interface User{
-    id: number;
+    id?: number;
     firstName: string;
     lastName: string;
-    age: number;
-    gender: string;
-    email: string;
-    phone: string;
+    age?: number;
+    gender?: string;
+    email?: string;
+    phone?: string;
 }
 
 

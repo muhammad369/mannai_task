@@ -1,7 +1,7 @@
 <div class="container mx-auto p-4 md:p-6">
   <!-- Header -->
   <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
-    <h1 class="text-2xl md:text-3xl font-bold text-gray-800">User Management</h1>
+    <h1 class="text-2xl md:text-3xl font-bold ">User Management</h1>
     <button
       pButton
       icon="pi pi-plus"
@@ -64,25 +64,25 @@
         </tr>
       </ng-template>
       
-      <ng-template pTemplate="body">
-        @for (user of users(); track $index){
-        <tr class="hover:bg-gray-50 transition-colors">
+      <ng-template pTemplate="body" let-user>
+        <!-- @for (user of users(); track user){ -->
+        <tr class="hover:bg-gray-50 transition-colors" >
           <td>
             <div class="flex items-center gap-2">
-              <div class="text-sm text-gray-500">{{ user.id }}</div>
+              <div class="text-sm ">{{ user.id }}</div>
             </div>
           </td>
-          <td class="text-gray-700">
-            <div class="font-semibold text-gray-800">{{ user.firstName }} {{ user.lastName }}</div>
+          <td >
+            <div class="font-semibold ">{{ user.firstName }} {{ user.lastName }}</div>
           </td>
           <td>{{ user.email }}</td>
-          <td class="text-gray-700">
+          <td >
             {{ user.phone }}
           </td>
-          <td class="text-gray-700">
+          <td >
             {{ user.age }}
           </td>
-          <td class="text-gray-700">
+          <td >
             {{ user.gender }}
           </td>
           <td>
@@ -106,7 +106,7 @@
             </div>
           </td>
         </tr>
-        }
+        <!-- } -->
       </ng-template>
       
     </p-table>
