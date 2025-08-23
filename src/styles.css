@@ -2,4 +2,11 @@
 
 
 @import "tailwindcss";
+
+/* PrimeNG imports */
+@import "primeicons/primeicons.css";
+
+/* TailwindCSS directives */
+@import "tailwindcss/preflight"
+@tailwind utilities;
 @plugin "tailwindcss-primeui";

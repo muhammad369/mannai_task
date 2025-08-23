@@ -15,7 +15,7 @@ export class UserService {
     private apiUrl = 'https://dummyjson.com';
 
     // Get users with pagination
-    getUsers(pageNo: number = 1, pageSize: number = 10): Observable<UserPagedResponse> {
+    getUsers(pageNo: number, pageSize: number): Observable<UserPagedResponse> {
         let params = new HttpParams()
             .set('skip', ((pageNo-1)*pageSize).toString())
             .set('limit', pageSize.toString());
@@ -38,8 +38,8 @@ export class UserService {
         return this.http.put<User>(`${this.apiUrl}/users/${id}`, userData);
     }
 
-    // Delete user
-    deleteUser(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}/users/${id}`);
-    }
+    // // Delete user
+    // deleteUser(id: number): Observable<void> {
+    //     return this.http.delete<void>(`${this.apiUrl}/users/${id}`);
+    // }
 }

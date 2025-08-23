@@ -1,4 +1,4 @@
-import { signal, computed } from '@angular/core';
+import { signal, computed, Injectable } from '@angular/core';
 import { User } from '../models/user';
 
 export interface UserState {
@@ -15,7 +15,11 @@ const initialState: UserState = {
   error: null
 };
 
+@Injectable({
+  providedIn: 'root'
+})
 export class UserStore {
+  // state
   private state = signal<UserState>(initialState);
 
   // Selectors
