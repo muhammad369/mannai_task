@@ -45,6 +45,7 @@
   <!-- Users Table -->
   @if (!loading()) {
   <div class="card">
+    <div class="hidden md:block">
     <p-table
       [value]="users()"
       [paginator]="false"
@@ -110,6 +111,52 @@
       </ng-template>
       
     </p-table>
+    </div>
+
+   
+<!-- Mobile Card View (hidden on desktop) -->
+<div class="md:hidden space-y-4">
+  @for (user of users(); track user.id) {
+    <div class="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
+      <div class="flex items-center gap-3 mb-3">
+       
+        <div class="flex-1">
+          <h3 class="font-semibold text-gray-800">{{ user.firstName }} {{ user.lastName }}</h3>
+          <p class="text-sm text-gray-600">{{ user.email }}</p>
+        </div>
+        
+      </div>
+      
+      <div class="grid grid-cols-2 gap-3 text-sm mb-3">
+        <div>
+          <span class="text-gray-500">Phone:</span>
+          <p class="text-gray-800">{{ user.phone || 'Not provided' }}</p>
+        </div>
+        
+        <div>
+          <span class="text-gray-500">Age:</span>
+          <p class="text-gray-800">{{ user.age || 'Not provided' }}</p>
+        </div>
+
+        <div>
+          <span class="text-gray-500">Gender:</span>
+          <p class="text-gray-800">{{ user.gender || 'Not provided' }}</p>
+        </div>
+
+      </div>
+      
+      <div class="flex justify-between items-center pt-3 border-t border-gray-100">
+        <span class="text-xs text-gray-500">ID: {{ user.id }}</span>
+        <div class="flex gap-2">
+          <button pButton icon="pi pi-eye" class="p-button-info p-button-text p-button-sm"
+                  routerLink="/users/{{ user.id }}"></button>
+          <button pButton icon="pi pi-pencil" class="p-button-warning p-button-text p-button-sm"
+                  routerLink="/users/edit/{{ user.id }}"></button>
+        </div>
+      </div>
+    </div>
+  }
+</div>
 
     <!-- Pagination -->
     <div class="mt-4">
